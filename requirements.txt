@@ -1,0 +1,6 @@
+numpy
+pandas
+xarray[io,viz]
+matplotlib
+seaborn
+jupyterlab
