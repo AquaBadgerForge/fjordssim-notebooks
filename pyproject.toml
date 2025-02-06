@@ -3,13 +3,13 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "fjordssim_data_prepare"
+name = "fjordssim-notebooks"
 version = "0.1.0"
 requires-python = ">=3.10"
 dynamic = ["dependencies"]
 
 [tool.setuptools.packages.find]
-include = ["fjordssim_data_prepare"]
+include = ["fjordssim_notebooks"]
 
 [tool.setuptools.dynamic]
 dependencies = {file = ["requirements.txt"]}
