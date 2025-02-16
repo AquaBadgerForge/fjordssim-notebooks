@@ -9,7 +9,8 @@ Python:
 1. Install conda <https://conda-forge.org/download/>.
 2. Create a conda environment `conda create --name fjordssim python=3.12`
 3. Activate the envoronment `conda activate fjordssim`
-4. Install the dependencies `pip install -e .`
+4. Navigate to fjordssim-notebooks directory
+5. Install the dependencies `pip install -e .`
 
 Julia:
 
