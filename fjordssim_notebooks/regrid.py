@@ -73,25 +73,42 @@ def regrid_from_norkyst(ds_in, ds_out_c, ds_out_u, ds_out_v, target_depths):
 
     da_temp = regridder_rho(ds_in["temperature"])
     da_salt = regridder_rho(ds_in["salinity"])
-    da_depth = regridder_rho(ds_in["depth"])
     da_u = regridder_u(ds_in["u_eastward"])
     da_v = regridder_v(ds_in["v_northward"])
 
-    depths = -1 * da_depth.values
-    depths = np.transpose(depths, (1, 0, 2, 3))
-
-    np_temp = regrid_depths(da_temp.values, depths, target_depths)
-    np_salt = regrid_depths(da_salt.values, depths, target_depths)
-
-    zu = np.zeros_like(da_u)
-    zu[:, :, :, :-1] = depths
-    zu[:, :, :, -1] = zu[:, :, :, -2]
-    zv = np.zeros_like(da_v)
-    zv[:, :, :-1, :] = depths
-    zv[:, :, -1, :] = zv[:, :, -2, :]
-
-    np_u = regrid_depths(da_u.values, zu, target_depths)
-    np_v = regrid_depths(da_v.values, zv, target_depths)
+    depths = ds_in.depth.values
+    f = interp1d(
+        -1 * depths,
+        da_temp.values,
+        axis=1,
+        kind="linear",
+        bounds_error=False,
+    )
+    np_temp = f(target_depths)
+    f = interp1d(
+        -1 * depths,
+        da_salt.values,
+        axis=1,
+        kind="linear",
+        bounds_error=False,
+    )
+    np_salt = f(target_depths)
+    f = interp1d(
+        -1 * depths,
+        da_u.values,
+        axis=1,
+        kind="linear",
+        bounds_error=False,
+    )
+    np_u = f(target_depths)
+    f = interp1d(
+        -1 * depths,
+        da_v.values,
+        axis=1,
+        kind="linear",
+        bounds_error=False,
+    )
+    np_v = f(target_depths)
 
     np_time = ds_in.time.values
 
