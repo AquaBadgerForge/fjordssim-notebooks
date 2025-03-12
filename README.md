@@ -21,7 +21,7 @@ Julia:
 3. Enter the Pkg REPL by pressing `]` from Julia REPL.
 4. Type `instantiate` to 'resolve' a `Manifest.toml` from a `Project.toml` to install and precompile dependency packages.
 
-To run a FjordsSim simulation 2 files are required:
+One of the options to run a FjordsSim simulation requires 2 files:
 
 - A bathymetry netcdf file.
 It should contain a 2d array variable "h" with depths (they should be negative),
@@ -31,11 +31,12 @@ a 1d array "z_faces" with the desired layer depths (also negative values).
 - A forcing netcdf file.
 This file contains the information about the forcing fields.
 To 'force' any variable, one need to define two 4d arrays called, for example, "T" and "T_lambda".
-"T" is a oceananigans name for temperature, lets use it further as example;
+"T" is an oceananigans name for temperature, lets use it further as example;
 it is possible to provide forcing for any variable defined in an oceananigans simulation.
 Spatial dimensions should have the shape of the corresponding [stagerred grid](https://clima.github.io/OceananigansDocumentation/stable/fields/#Staggered-grids-and-field-locations).
-The forth dimension is time in seconds from the start of a simulation, in Python one can use a datetime format.
+The forth dimension is time in seconds, in Python one can use a datetime format.
 "T_lambda" defines a type of forcing to be used in a simulation.
 "T" value should correspond to "T_lambda".
 If 0 < "T_lambda" < 1, [relaxation](https://clima.github.io/OceananigansDocumentation/stable/model_setup/forcing_functions/#Relaxation) is used.
-If "T_lambda"
+If "T_lambda" > 1, horizontal flux in "T" should be provided.
+If "T_lambda" < -1, vertical flux in "T" should be provided.
