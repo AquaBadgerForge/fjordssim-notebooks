@@ -8,6 +8,7 @@
 
 *.jld2
 
+.DS_Store
 *.mp4
 *.nc
 *.png
