@@ -185,3 +185,5 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+AGENTS.md
+Isafjardardjup/rivers_Q.xlsx
