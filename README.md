@@ -2,6 +2,10 @@
 
 Python and Julia scripts / notebooks for FjordsSim data preparation.
 
+## Fjord-Specific Documentation
+
+- **[Ísafjarðardjúp (Iceland)](Isafjardardjup/README.md)** - Boundary conditions, river forcing, and bathymetry processing
+
 ## Installation
 
 Python:
